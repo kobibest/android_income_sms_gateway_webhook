@@ -39,4 +39,11 @@
     <!-- תפריט -->
     <string name="label_url">URL</string>
     <string name="menu_syslog">Syslog</string>
+    <string name="btn_on">הפעל</string>
+    <string name="btn_off">כבה</string>
+    <string name="btn_close">סגור</string>
+    <string name="btn_delete">מחק</string>
+    <string name="error_empty_sender">שדה השולח ריק</string>
+    <string name="error_wrong_url">כתובת URL שגויה</string>
+
 </resources>
