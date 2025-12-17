@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SmsService" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+    </style>
+
+    <style name="PrimaryButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+
+    <style name="TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <style name="TitleText">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BodyText">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:lineSpacingMultiplier">1.3</item>
+    </style>
+
+    <style name="SmallText">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_hint</item>
+    </style>
+</resources>
