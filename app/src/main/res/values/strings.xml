@@ -57,7 +57,23 @@
     <string name="btn_off">כבה</string>
     <string name="btn_close">סגור</string>
     <string name="btn_delete">מחק</string>
+    <string name="btn_add">הוסף</string>
+    <string name="btn_save">שמור</string>
+    <string name="btn_test">בדיקה</string>
+    <string name="btn_clear">נקה</string>
     <string name="error_empty_sender">שדה השולח ריק</string>
     <string name="error_wrong_url">כתובת URL שגויה</string>
+    <string name="error_empty_url">כתובת URL ריקה</string>
+    <string name="error_wrong_json">JSON לא תקין</string>
+    <string name="error_wrong_retries_number">מספר ניסיונות לא תקין</string>
+
+    <!-- Old MainActivity resources -->
+    <string name="key_phones_preference">phones_preference</string>
+    <string name="asterisk">*</string>
+    <string name="any">הכל</string>
+    <string name="delete_record">מחיקת רשומה</string>
+    <string name="confirm_delete">האם למחוק את הרשומה?</string>
+    <string name="notification_channel">SMS Gateway</string>
+    <string name="permission_needed">נדרשת הרשאת SMS</string>
 
 </resources>
