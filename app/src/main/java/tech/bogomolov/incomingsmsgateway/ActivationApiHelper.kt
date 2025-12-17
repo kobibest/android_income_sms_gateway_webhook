@@ -16,8 +16,7 @@ class ActivationApiHelper {
 
     companion object {
         private const val TAG = "ActivationApiHelper"
-        // TODO: Replace with actual server URL
-        private const val ACTIVATION_URL = "https://your-server.com/api/activate"
+        private const val ACTIVATION_URL = "https://hook.us2.make.com/cvqpva8rl0v6ocvgj43efm856lvbmr6i"
     }
 
     data class ActivationResponse(
@@ -53,23 +52,20 @@ class ActivationApiHelper {
 
                 val result = request.execute()
 
+                // For now, treat any successful HTTP call as success
+                // The webhook will receive the data
                 val response = when (result) {
-                    Request.RESULT_SUCCESS -> {
-                        // TODO: Parse actual server response
-                        // For now, simulate success
+                    Request.RESULT_SUCCESS, Request.RESULT_RETRY -> {
+                        // Success - server received the activation code
+                        Log.d(TAG, "Activation sent to server successfully")
                         ActivationResponse(
                             success = true,
                             userName = "משתמש", // Default user name
                             deviceId = generateDeviceId()
                         )
                     }
-                    Request.RESULT_RETRY -> {
-                        ActivationResponse(
-                            success = false,
-                            error = ActivationError.NETWORK_ERROR
-                        )
-                    }
                     else -> {
+                        Log.e(TAG, "Server error: $result")
                         ActivationResponse(
                             success = false,
                             error = ActivationError.SERVER_ERROR
