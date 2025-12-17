@@ -61,6 +61,7 @@
     <string name="btn_save">שמור</string>
     <string name="btn_test">בדיקה</string>
     <string name="btn_clear">נקה</string>
+    <string name="btn_cancel">ביטול</string>
     <string name="error_empty_sender">שדה השולח ריק</string>
     <string name="error_wrong_url">כתובת URL שגויה</string>
     <string name="error_empty_url">כתובת URL ריקה</string>
