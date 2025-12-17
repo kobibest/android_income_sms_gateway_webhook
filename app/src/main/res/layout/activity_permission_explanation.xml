@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layoutDirection="rtl"
+    android:textDirection="rtl"
+    android:background="@color/background"
+    android:padding="24dp">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/permissionIcon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:src="@android:drawable/ic_dialog_info"
+        android:tint="@color/primary"
+        android:layout_marginBottom="24dp"
+        android:contentDescription="@null" />
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/permission_title"
+        style="@style/TitleText"
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
+
+    <TextView
+        android:id="@+id/explanationText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/permission_explanation"
+        style="@style/BodyText"
+        android:gravity="center"
+        android:layout_marginBottom="24dp" />
+
+    <LinearLayout
+        android:id="@+id/trustContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@drawable/trust_background"
+        android:padding="16dp"
+        android:layout_marginBottom="32dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@android:drawable/ic_lock_lock"
+            android:tint="@color/status_active"
+            android:layout_marginEnd="12dp"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/trustText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/permission_trust_statement"
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary"
+            android:lineSpacingMultiplier="1.2" />
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/grantPermissionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/permission_grant_button"
+        style="@style/PrimaryButton"
+        android:layout_marginBottom="8dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/laterButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/permission_later_button"
+        style="@style/TextButton" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2" />
+
+</LinearLayout>

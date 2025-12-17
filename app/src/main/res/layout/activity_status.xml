@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layoutDirection="rtl"
+    android:textDirection="rtl"
+    android:background="@color/background"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/status_title"
+        style="@style/TitleText"
+        android:gravity="center"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="48dp" />
+
+    <LinearLayout
+        android:id="@+id/statusContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/status_card_background"
+        android:padding="32dp"
+        android:layout_marginBottom="32dp">
+
+        <View
+            android:id="@+id/statusIndicator"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/status_indicator_active"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status_active"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/status_active"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/statusDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status_active_description"
+            style="@style/BodyText"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/technicalInfoContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginBottom="32dp">
+
+        <TextView
+            android:id="@+id/deviceIdText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status_device_id"
+            style="@style/SmallText"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/lastConnectionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status_last_connection"
+            style="@style/SmallText" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/disconnectButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/status_disconnect_button"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+        android:textColor="@color/error"
+        android:layout_marginBottom="24dp" />
+
+</LinearLayout>
