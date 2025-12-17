@@ -81,7 +81,7 @@ class MainScreenActivity : AppCompatActivity() {
                 statusText.text = getString(R.string.main_status_no_permission)
                 statusText.setTextColor(ContextCompat.getColor(this, R.color.status_inactive))
                 toggleButton.text = getString(R.string.main_button_grant_permission)
-                toggleButton.icon = ContextCompat.getDrawable(this, R.drawable.ic_launcher_foreground)
+                toggleButton.icon = null
             }
             isPaused -> {
                 // Paused
