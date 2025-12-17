@@ -36,22 +36,41 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
             return;
         }
 
+        String format = bundle.getString("format");
+
         StringBuilder content = new StringBuilder();
-        final SmsMessage[] messages = new SmsMessage[pdus.length];
+        SmsMessage[] messages = new SmsMessage[pdus.length];
+
         for (int i = 0; i < pdus.length; i++) {
-            messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
-            content.append(messages[i].getDisplayMessageBody());
+            if (format != null) {
+                messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i], format);
+            } else {
+                messages[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
+            }
+
+            if (messages[i] != null) {
+                content.append(messages[i].getDisplayMessageBody());
+            }
         }
 
-        ArrayList<ForwardingConfig> configs = ForwardingConfig.getAll(context);
-        String asterisk = context.getString(R.string.asterisk);
+        if (messages[0] == null) {
+            return;
+        }
 
         String sender = messages[0].getOriginatingAddress();
         if (sender == null) {
             return;
         }
 
+        ArrayList<ForwardingConfig> configs = ForwardingConfig.getAll(context);
+        String asterisk = context.getString(R.string.asterisk);
+
+        int detectedSlot = detectSim(bundle);
+        int slotId = detectedSlot >= 0 ? detectedSlot + 1 : 0;
+        String slotName = slotId > 0 ? "sim" + slotId : "undetected";
+
         for (ForwardingConfig config : configs) {
+
             if (!sender.equals(config.getSender()) && !config.getSender().equals(asterisk)) {
                 continue;
             }
@@ -60,26 +79,27 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
                 continue;
             }
 
-            int slotId = this.detectSim(bundle) + 1;
-            String slotName = "undetected";
-            if (slotId < 0) {
-                slotId = 0;
-            }
-
             if (config.getSimSlot() > 0 && config.getSimSlot() != slotId) {
                 continue;
             }
 
-            if (slotId > 0) {
-                slotName = "sim" + slotId;
-            }
-
-            this.callWebHook(config, sender, slotName, content.toString(), messages[0].getTimestampMillis());
+            callWebHook(
+                    config,
+                    sender,
+                    slotName,
+                    content.toString(),
+                    messages[0].getTimestampMillis()
+            );
         }
     }
 
-    protected void callWebHook(ForwardingConfig config, String sender, String slotName,
-                               String content, long timeStamp) {
+    protected void callWebHook(
+            ForwardingConfig config,
+            String sender,
+            String slotName,
+            String content,
+            long timeStamp
+    ) {
 
         String message = config.prepareMessage(sender, content, slotName, timeStamp);
 
@@ -107,48 +127,31 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
                         .setInputData(data)
                         .build();
 
-        WorkManager
-                .getInstance(this.context)
-                .enqueue(workRequest);
-
+        WorkManager.getInstance(context).enqueue(workRequest);
     }
 
     private int detectSim(Bundle bundle) {
         int slotId = -1;
         Set<String> keySet = bundle.keySet();
+
         for (String key : keySet) {
             switch (key) {
                 case "phone":
-                    slotId = bundle.getInt("phone", -1);
-                    break;
                 case "slot":
-                    slotId = bundle.getInt("slot", -1);
-                    break;
                 case "simId":
-                    slotId = bundle.getInt("simId", -1);
-                    break;
                 case "simSlot":
-                    slotId = bundle.getInt("simSlot", -1);
-                    break;
                 case "slot_id":
-                    slotId = bundle.getInt("slot_id", -1);
-                    break;
                 case "simnum":
-                    slotId = bundle.getInt("simnum", -1);
-                    break;
                 case "slotId":
-                    slotId = bundle.getInt("slotId", -1);
-                    break;
                 case "slotIdx":
-                    slotId = bundle.getInt("slotIdx", -1);
-                    break;
                 case "android.telephony.extra.SLOT_INDEX":
-                    slotId = bundle.getInt("android.telephony.extra.SLOT_INDEX", -1);
+                    slotId = bundle.getInt(key, -1);
                     break;
+
                 default:
-                    if (key.toLowerCase().contains("slot") | key.toLowerCase().contains("sim")) {
+                    if (key.toLowerCase().contains("slot") || key.toLowerCase().contains("sim")) {
                         String value = bundle.getString(key, "-1");
-                        if (value.equals("0") | value.equals("1") | value.equals("2")) {
+                        if ("0".equals(value) || "1".equals(value) || "2".equals(value)) {
                             slotId = bundle.getInt(key, -1);
                         }
                     }
