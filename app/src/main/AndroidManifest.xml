@@ -18,8 +18,8 @@
         android:usesCleartextTraffic="true">
         <service
             android:name=".SmsReceiverService"
-            android:enabled="true"
-            android:exported="true" />
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
 
         <receiver
             android:name=".BootCompletedReceiver"
