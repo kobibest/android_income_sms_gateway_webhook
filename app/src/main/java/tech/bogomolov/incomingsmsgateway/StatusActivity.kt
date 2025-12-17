@@ -1,4 +1,4 @@
-package com.example.smsservice
+package tech.bogomolov.incomingsmsgateway
 
 import android.Manifest
 import android.content.Context

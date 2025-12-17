@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:layoutDirection="rtl">
+
+    <!-- Welcome Text -->
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="?android:textColorPrimary"
+        android:gravity="center"
+        tools:text="שלום משתמש!"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="48dp" />
+
+    <!-- Status Container -->
+    <LinearLayout
+        android:id="@+id/statusContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Status Icon (Circle) -->
+        <View
+            android:id="@+id/statusIndicator"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:background="@drawable/status_indicator_active" />
+
+        <!-- Status Text -->
+        <TextView
+            android:id="@+id/statusText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            tools:text="השירות פעיל ומאזין להודעות"
+            tools:textColor="@color/status_active" />
+
+    </LinearLayout>
+
+    <!-- Toggle Button (Large) -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/toggleButton"
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        android:layout_marginBottom="16dp"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:cornerRadius="16dp"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        tools:text="השהה"
+        tools:icon="@android:drawable/ic_media_pause"
+        app:layout_constraintBottom_toTopOf="@id/settingsButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Settings Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/settingsButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/main_settings_title"
+        android:textSize="16sp"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        app:cornerRadius="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="24dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

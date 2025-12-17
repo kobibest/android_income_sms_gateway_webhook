@@ -36,6 +36,20 @@
     <string name="dialog_no">לא</string>
     <string name="dialog_cancel">ביטול</string>
 
+    <!-- Main Screen -->
+    <string name="main_welcome">שלום %s!</string>
+    <string name="main_status_active">השירות פעיל ומאזין להודעות</string>
+    <string name="main_status_paused">השירות מושהה</string>
+    <string name="main_status_no_permission">נדרשות הרשאות להפעלת השירות</string>
+    <string name="main_button_pause">השהה</string>
+    <string name="main_button_resume">הפעל</string>
+    <string name="main_button_grant_permission">אישור הרשאות</string>
+    <string name="main_settings_title">הגדרות</string>
+    <string name="main_settings_permissions">הרשאות</string>
+    <string name="main_settings_disconnect">ניתוק מהשירות</string>
+    <string name="main_disconnect_confirm_title">ניתוק מהשירות</string>
+    <string name="main_disconnect_confirm_message">האם אתה בטוח שברצונך להתנתק מהשירות?\nיהיה עליך להזין קוד הפעלה מחדש.</string>
+
     <!-- תפריט -->
     <string name="label_url">URL</string>
     <string name="menu_syslog">Syslog</string>

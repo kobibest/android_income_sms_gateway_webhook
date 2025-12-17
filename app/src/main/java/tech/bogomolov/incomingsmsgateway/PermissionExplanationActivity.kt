@@ -1,4 +1,4 @@
-package com.example.smsservice
+package tech.bogomolov.incomingsmsgateway
 
 import android.Manifest
 import android.content.Context
@@ -128,7 +128,7 @@ class PermissionExplanationActivity : AppCompatActivity() {
     }
 
     private fun navigateToStatus() {
-        val intent = Intent(this, StatusActivity::class.java)
+        val intent = Intent(this, MainScreenActivity::class.java)
         startActivity(intent)
         finish()
     }
