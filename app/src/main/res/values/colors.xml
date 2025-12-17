@@ -14,4 +14,7 @@
     <color name="status_active">#4CAF50</color>
     <color name="status_inactive">#F44336</color>
     <color name="error">#D32F2F</color>
+    <color name="colorPrimary">@color/primary</color>
+    <color name="colorPrimaryDark">@color/primary_dark</color>
+    <color name="colorAccent">@color/accent</color>
 </resources>
