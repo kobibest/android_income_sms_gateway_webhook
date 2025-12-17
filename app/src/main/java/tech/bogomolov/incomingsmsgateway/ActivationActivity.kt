@@ -1,4 +1,4 @@
-package com.example.smsservice
+package tech.bogomolov.incomingsmsgateway
 
 import android.content.Context
 import android.content.Intent
@@ -25,7 +25,10 @@ class ActivationActivity : AppCompatActivity() {
         private const val PREFS_NAME = "sms_service_prefs"
         private const val KEY_ACTIVATED = "activated"
         private const val KEY_DEVICE_ID = "device_id"
+        private const val KEY_USER_NAME = "user_name"
     }
+
+    private val apiHelper = ActivationApiHelper()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,24 +91,36 @@ class ActivationActivity : AppCompatActivity() {
     }
 
     private fun sendActivationToServer(code: String) {
-        // TODO: Implement actual server call
-        // POST to server with activation code
-        // Expected response: success/failure + device_id
-
-        // Simulating async call with Handler
-        activateButton.postDelayed({
-            // TODO: Replace with actual server response handling
-            handleActivationResponse(
-                success = true,
-                deviceId = generateDeviceId(),
-                errorType = null
-            )
-        }, 1500)
+        apiHelper.activateDevice(code) { response ->
+            if (response.success) {
+                handleActivationResponse(
+                    success = true,
+                    deviceId = response.deviceId,
+                    userName = response.userName,
+                    errorType = null
+                )
+            } else {
+                val errorType = when (response.error) {
+                    ActivationApiHelper.ActivationError.INVALID_CODE -> ActivationError.INVALID_CODE
+                    ActivationApiHelper.ActivationError.CODE_IN_USE -> ActivationError.CODE_IN_USE
+                    ActivationApiHelper.ActivationError.SERVER_ERROR -> ActivationError.SERVER_ERROR
+                    ActivationApiHelper.ActivationError.NETWORK_ERROR -> ActivationError.SERVER_ERROR
+                    null -> ActivationError.SERVER_ERROR
+                }
+                handleActivationResponse(
+                    success = false,
+                    deviceId = null,
+                    userName = null,
+                    errorType = errorType
+                )
+            }
+        }
     }
 
     private fun handleActivationResponse(
         success: Boolean,
         deviceId: String?,
+        userName: String?,
         errorType: ActivationError?
     ) {
         setLoadingState(false)
@@ -115,6 +130,7 @@ class ActivationActivity : AppCompatActivity() {
             prefs.edit()
                 .putBoolean(KEY_ACTIVATED, true)
                 .putString(KEY_DEVICE_ID, deviceId)
+                .putString(KEY_USER_NAME, userName ?: "משתמש")
                 .apply()
 
             navigateToNextScreen()
@@ -151,11 +167,6 @@ class ActivationActivity : AppCompatActivity() {
         currentFocus?.let {
             imm.hideSoftInputFromWindow(it.windowToken, 0)
         }
-    }
-
-    private fun generateDeviceId(): String {
-        // TODO: Replace with actual device ID from server
-        return "DEV-${System.currentTimeMillis().toString(36).uppercase()}"
     }
 
     enum class ActivationError {
