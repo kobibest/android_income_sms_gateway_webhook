@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">SMS Service</string>
+    <string name="app_name">SMS Gateway</string>
 
     <!-- Activation Screen -->
     <string name="activation_title">הפעלת השירות</string>
@@ -35,13 +35,8 @@
     <string name="dialog_yes">כן</string>
     <string name="dialog_no">לא</string>
     <string name="dialog_cancel">ביטול</string>
-    <resources>
-    <string name="app_name">SMS Gateway</string>
+
+    <!-- תפריט -->
     <string name="label_url">URL</string>
-
-    <!-- נוספה מחרוזת חדשה לתפריט -->
     <string name="menu_syslog">Syslog</string>
-</resources>
-
-
 </resources>
